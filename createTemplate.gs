@@ -43,6 +43,16 @@ function createTemplate() {
 
   secrets.getRange("A3:B5").setValues(generic_secrets);
   secrets.getRange("A7:B10").setValues(inst_secrets);  
+  
+  var csvUrl = "https://plaid.com/documents/transactions-personal-finance-category-taxonomy.csv"; // Replace with the URL of the CSV file
+  var response = UrlFetchApp.fetch(csvUrl);
+  var csvData = response.getContentText();
 
+  var parsedCsv = Utilities.parseCsv(csvData);
+
+  // Write data from the second column of the CSV to the first column of the sheet
+  var numRows = parsedCsv.length;
+  var range = sheet.getRange(2, 1, numRows, 1);
+  range.setValues(parsedCsv.map(row => [row[1]]));
 
 }
