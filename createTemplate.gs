@@ -24,7 +24,7 @@ function createTemplate() {
 
   //create headers for balances
   let balance_headers = [["account_id","official_name","current_balance","available_balance","limit","type","subtype","date"]];
-  security.getRange(1,1,1,8).setValues(security_headers);
+  bal.getRange(1,1,1,8).setValues(balance_headers);
 
   //create headers for transactions sheet
   let trans_headers = [["account_id","official_name","current_balance","available_balance","limit","type","subtype","date","override_name"]];
@@ -32,7 +32,11 @@ function createTemplate() {
 
   //setup secrets tab
   secrets.getRange("A1").setValue("Important: This tab is where you store the secrets for each institution");
-  
+
+  //create headers for transactions sheet
+  let cat_headers = [["PRIMARY","DETAILED","DESCRIPTION","categoryDetail","categoryGroup"]];
+  cat.getRange(1,1,1,5).setValues(cat_headers);
+
   let generic_secrets = [["url", "https://sandbox.plaid.com"], ["client_id", "{Enter client_id from the Plaid dashboard}"], ["secret","{Enter secret from Plaid dashboard}"]];
 
   let inst_secrets = [["instituion_name", "access_token"], ["{Name for first institution}", "{Enter access_token from Plaid quickstart}"],["{Name for second institution}", "{Enter access_token from Plaid quickstart}"],["Enter any number of insitutions and access tokens", ""]];
