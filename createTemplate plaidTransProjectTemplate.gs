@@ -27,8 +27,8 @@ function createTemplate() {
   bal.getRange(1,1,1,8).setValues(balance_headers);
 
   //create headers for transactions sheet
-  let trans_headers = [["account_id","official_name","current_balance","available_balance","limit","type","subtype","date","override_name"]];
-  trans.getRange(1,1,1,9).setValues(trans_headers);
+  let trans_headers = [["transaction_id","account_id","category","amount","date","name","pending","category_detail","category_group","needs_review","account","tag"]];
+  trans.getRange(1,1,1,12).setValues(trans_headers);
 
   //setup secrets tab
   secrets.getRange("A1").setValue("Important: This tab is where you store the secrets for each institution");
@@ -39,10 +39,11 @@ function createTemplate() {
 
   let generic_secrets = [["url", "https://sandbox.plaid.com"], ["client_id", "{Enter client_id from the Plaid dashboard}"], ["secret","{Enter secret from Plaid dashboard}"]];
 
-  let inst_secrets = [["instituion_name", "access_token"], ["{Name for first institution}", "{Enter access_token from Plaid quickstart}"],["{Name for second institution}", "{Enter access_token from Plaid quickstart}"],["Enter any number of insitutions and access tokens", ""]];
+  let inst_secrets = [["instituion_name", "access_token","status","cursor","link_token"], ["{Name for first institution}", "{Enter access_token from Plaid quickstart}"],["{Name for second institution}", "{Enter access_token from Plaid quickstart}"],["Enter any number of insitutions and access tokens", ""]];
 
   secrets.getRange("A3:B5").setValues(generic_secrets);
-  secrets.getRange("A7:B10").setValues(inst_secrets);  
+  secrets.getRange("A7:B10").setValues(inst_secrets);
+  secrets.getRange("A12").setValue("Last Script Run")
   
   var csvUrl = "https://plaid.com/documents/transactions-personal-finance-category-taxonomy.csv"; // Replace with the URL of the CSV file
   var response = UrlFetchApp.fetch(csvUrl);
@@ -52,7 +53,7 @@ function createTemplate() {
 
   // Write data from the second column of the CSV to the first column of the sheet
   var numRows = parsedCsv.length;
-  var range = sheet.getRange(2, 1, numRows, 1);
-  range.setValues(parsedCsv.map(row => [row[1]]));
+  var range = cat.getRange(2, 1, numRows, 1);
+  range.setValues(parsedCsv);
 
 }
