@@ -4,11 +4,11 @@ This project downloads transactions from Plaid using the [/transaction/sync](htt
 ## Getting Started
 ###### Create Google Sheet Template
 1. From your [Google App Scripts home](https://script.google.com/home) create a new project
-2. Copy the [create template code](https://github.com/edricklarkin/investment-transactions/blob/main/create_template.gs) into code.gs
+2. Copy the [create template code](https://github.com/ramkangaroo/plaid-transactions-sheets/blob/main/createTemplate.gs) into code.gs
 3. Run the code. It will prompt a warning. Grant the project access to modify files in Google Drive.
-4. Open “Plaid Investment Transactions” from your Google Drive
+4. Open “Plaid Finance Transactions” from your Google Drive
 5. From the “Extensions” menu open “App Script”
-6. Copy [getTransToSheet.gs], [utils.gs], [link.html], [updateLink.gs] into 4 separate files in your project.
+6. Copy [getTransToSheet.gs](https://github.com/ramkangaroo/plaid-transactions-sheets/blob/main/getTransToSheet.gs), [utils.gs](https://github.com/ramkangaroo/plaid-transactions-sheets/blob/main/utils.gs), [link.html](https://github.com/ramkangaroo/plaid-transactions-sheets/blob/main/link.html), [updateLink.gs](https://github.com/ramkangaroo/plaid-transactions-sheets/blob/main/updateLink.gs) into 4 separate files in your project.
 You have now completed setting up your template
 ###### Getting Plaid Client ID and Secret
 1. If you have not already, sign-up for a free account at [Plaid](https://plaid.com/)
